@@ -28,7 +28,8 @@ public class sitEvent : MonoBehaviour
             } 
 
         }
-
+        
+        //Apabila duduk dan dihancurkan
         else if (camera.isSit && destroy)
         {
             for(int i = 0;i < activatedObj.Length; i++)
