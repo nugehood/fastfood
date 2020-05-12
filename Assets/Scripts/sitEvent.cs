@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class sitEvent : MonoBehaviour
 {
     public MouseLook camera;
-    
+
     public GameObject[] activatedObj;
     public bool destroy;
     public GameObject[] destroyObj;
@@ -19,7 +19,6 @@ public class sitEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Apabila duduk dan tidak dihancurkan
         if (camera.isSit&&!destroy)
         {
             for(int i = 0;i < activatedObj.Length; i++)
@@ -28,8 +27,7 @@ public class sitEvent : MonoBehaviour
             } 
 
         }
-        
-        //Apabila duduk dan dihancurkan
+
         else if (camera.isSit && destroy)
         {
             for(int i = 0;i < activatedObj.Length; i++)

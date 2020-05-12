@@ -8,13 +8,16 @@ public class Movement : MonoBehaviour
 
     public CharacterController controller;
 
+    public MouseLook look;
+
   
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)&&look.sitEvent)
         {
             controller.enabled = true;
+            look.sitEvent = false;
         }
 
         if (Input.GetKey(KeyCode.LeftShift))

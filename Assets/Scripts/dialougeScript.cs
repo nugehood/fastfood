@@ -12,13 +12,17 @@ public class dialougeScript : MonoBehaviour
     public bool destroy;
     public GameObject[] desObj;
 
-    public Text dialoguetxt;
+    public Text dialoguetxt, hint;
+    
+
+    bool isEnd;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        isEnd = true;   
         i = 0;
         dialoguetxt.text = dialogue[i].ToString();
     }
@@ -26,7 +30,7 @@ public class dialougeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&isEnd)
         {
             Next();
         }
@@ -34,8 +38,10 @@ public class dialougeScript : MonoBehaviour
 
     public void Next()
     {
+        hint.text = null;
         i += 1;
-        dialoguetxt.text = "";  
+        dialoguetxt.text = "";
+        isEnd = false;
         StartCoroutine(dialog());
         if(i >= dialogue.Length)
         {
@@ -61,6 +67,8 @@ public class dialougeScript : MonoBehaviour
             dialoguetxt.text += c.ToString();
             yield return new WaitForSeconds(0.01f);
         }
+        isEnd = true;
+        hint.text = "SPACE";
         
     }
 }

@@ -8,6 +8,8 @@ public class eventOnTimer : MonoBehaviour
     public float waitTime;
     float timer;
     public GameObject[] activeObj;
+    public GameObject[] tagObj;
+    public MouseLook look;
 
 
     // Start is called before the first frame update
@@ -24,7 +26,9 @@ public class eventOnTimer : MonoBehaviour
         {
             for(int i=0;i < activeObj.Length; i++)
             {
+                look.sitEvent = true;
                 activeObj[i].SetActive(true);
+                tagObj[i].tag = "music";
                 Destroy(gameObject);
             }
         }

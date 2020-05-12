@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MouseLook : MonoBehaviour
 {
-    RenderSettings render;
+    public GameObject[] activeObj;
 
     public RectTransform crossHair;
 
@@ -16,6 +16,8 @@ public class MouseLook : MonoBehaviour
     bool isPlaying;
 
     public bool isSit;
+
+    public bool sitEvent;
 
     Transform obj;
 
@@ -95,12 +97,10 @@ public class MouseLook : MonoBehaviour
                     move.controller.enabled = false;
                     playerBody.position = obj.position;
                     isSit = true;
+                   
                 }
-
-                else if (Input.GetMouseButtonDown(0) && isSit)
-                {
-                    
-                }
+                
+               
             }
 
             if (hit.collider.gameObject.CompareTag("music"))
@@ -110,6 +110,7 @@ public class MouseLook : MonoBehaviour
                     audioSource = hit.collider.GetComponent<AudioSource>();
                     audioSource.Stop();
                     isPlaying = false;
+                    activeObj[0].SetActive(true);
                 }
 
                 else if (Input.GetMouseButtonDown(0) && !isPlaying)
@@ -117,7 +118,12 @@ public class MouseLook : MonoBehaviour
                     audioSource = hit.collider.GetComponent<AudioSource>();
                     audioSource.Play();
                     isPlaying = true;
+                    
                 }
+
+                
+
+
             }
 
             
