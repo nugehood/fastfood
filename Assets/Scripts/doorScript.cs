@@ -7,6 +7,8 @@ public class doorScript : MonoBehaviour
     public Animator animator;
     public int parameter;
     public bool isopen;
+    public AudioSource audioSource;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class doorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("open",isopen);   
+        animator.SetBool("open",isopen);
         
     }
 

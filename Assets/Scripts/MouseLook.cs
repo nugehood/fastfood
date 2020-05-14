@@ -7,6 +7,8 @@ public class MouseLook : MonoBehaviour
 {
     public GameObject[] activeObj;
 
+    public AudioClip doorOpen, doorClose;
+
     public RectTransform crossHair;
 
     public Movement move;
@@ -78,12 +80,13 @@ public class MouseLook : MonoBehaviour
                 if (Input.GetMouseButtonDown(0)&&!door.isopen)
                 {
                     door.isopen = true;
-                   
+                    door.audioSource.PlayOneShot(doorOpen);
                     
                 }
                 else if (Input.GetMouseButtonDown(0)&&door.isopen)
                 {
                     door.isopen = false;
+                    door.audioSource.PlayOneShot(doorClose);
                 }
 
               

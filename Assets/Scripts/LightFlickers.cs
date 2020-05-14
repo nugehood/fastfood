@@ -10,7 +10,7 @@ public class LightFlickers : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        flickers = (Random.value > 0.5f);
+        
     }
 
     // Update is called once per frame
@@ -31,8 +31,8 @@ public class LightFlickers : MonoBehaviour
 
     IEnumerator flicker()
     {
-
-        yield return new WaitForSeconds(0.1f);
+        light.intensity = 1f;
+        yield return new WaitForSeconds(0.3f);
         light.intensity = 0.1f;
     }
 
