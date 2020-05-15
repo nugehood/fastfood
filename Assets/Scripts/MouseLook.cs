@@ -7,6 +7,8 @@ public class MouseLook : MonoBehaviour
 {
     public GameObject[] activeObj;
 
+    public Text lockedText;
+
     public AudioClip doorOpen, doorClose;
 
     public RectTransform crossHair;
@@ -129,6 +131,28 @@ public class MouseLook : MonoBehaviour
 
             }
 
+
+            
+
+            if (hit.collider.gameObject.CompareTag("lock"))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    lockedText.text = "Door is locked!"; 
+                    StartCoroutine(disableText());
+                }
+            }
+
+            if (hit.collider.gameObject.CompareTag("key"))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    lockedText.text = "You pickup a key!";
+                    StartCoroutine(disableText());
+                    Destroy(hit.collider.gameObject);
+                }
+            }
+
             
 
            
@@ -137,7 +161,12 @@ public class MouseLook : MonoBehaviour
             
         }
 
-        
-        
+    }
+
+    IEnumerator disableText()
+    {
+        yield return new WaitForSeconds(3f);
+        lockedText.text = "";
+        StopAllCoroutines();
     }
 }
