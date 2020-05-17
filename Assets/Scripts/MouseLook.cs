@@ -7,6 +7,8 @@ public class MouseLook : MonoBehaviour
 {
     public GameObject[] activeObj;
 
+    public GameObject lantern;
+
     public Text lockedText;
 
     public AudioClip doorOpen, doorClose;
@@ -37,6 +39,8 @@ public class MouseLook : MonoBehaviour
 
     public Camera cam;
 
+    Camera guncam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +52,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        guncam = GameObject.Find("Camera (1)").GetComponent<Camera>();
 
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
@@ -150,6 +154,27 @@ public class MouseLook : MonoBehaviour
                     lockedText.text = "You pickup a key!";
                     StartCoroutine(disableText());
                     Destroy(hit.collider.gameObject);
+                }
+            }
+
+            if (hit.collider.gameObject.CompareTag("blanket"))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    animator = hit.collider.gameObject.GetComponent<Animator>();
+                    animator.SetBool("open", true);
+                }
+            }
+
+            if (hit.collider.gameObject.CompareTag("lantern"))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Destroy(hit.collider.gameObject);
+                    lantern.SetActive(true);
+                    guncam.depth = 80;
+                    lockedText.text = "You got a lantern!";
+                    StartCoroutine(disableText());
                 }
             }
 

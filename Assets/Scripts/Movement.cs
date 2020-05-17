@@ -10,10 +10,28 @@ public class Movement : MonoBehaviour
 
     public MouseLook look;
 
-  
+    AudioSource audioSource;
+
+    public AudioClip walksfx;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            audioSource.clip = walksfx;
+            audioSource.Play();
+        }
+        else if(Input.GetKeyUp(KeyCode.W))
+        {
+            audioSource.Stop();
+        }
+       
+        
         if (Input.GetKeyDown(KeyCode.E)&&look.sitEvent)
         {
             controller.enabled = true;
@@ -23,6 +41,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = 5f;
+            audioSource.Stop();
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
