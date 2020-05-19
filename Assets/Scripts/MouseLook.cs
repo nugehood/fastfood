@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class MouseLook : MonoBehaviour
 {
+
+    public AudioSource plyrAudio;
+
     public GameObject[] activeObj;
 
     public GameObject lantern;
@@ -106,6 +109,7 @@ public class MouseLook : MonoBehaviour
                     move.controller.enabled = false;
                     playerBody.position = obj.position;
                     isSit = true;
+                    move.notrun = true;
                    
                 }
                 
