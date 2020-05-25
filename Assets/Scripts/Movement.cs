@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -18,8 +19,10 @@ public class Movement : MonoBehaviour
 
     bool walk;
 
+    public bool stealth;
 
-
+    public Button loud;
+    
 
 
     private void Start()
@@ -29,12 +32,27 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (stealth)
+        {
+            loud.interactable = false;
+        }
+        else if (!stealth)
+        {
+            loud.interactable = true;
+        }
+        else if (!walk)
+        {
+            loud.interactable = false;
+        }
+
         //Lari
         if (Input.GetKeyDown(KeyCode.W))
         {
             audioSource.clip = walksfx;
             audioSource.Play();
             walk = true;
+            
         }
         //Apabila tidak lari
         else if(Input.GetKeyUp(KeyCode.W) | notrun)
@@ -57,13 +75,14 @@ public class Movement : MonoBehaviour
         {
             audioSource.Stop();
             speed = 5f;
-           
+            stealth = true;
         }
         //Apabila tidak jalan
         else if (Input.GetKeyUp(KeyCode.LeftShift)&&walk)
         {
             audioSource.Play(); 
             speed = 10f;
+            stealth = false;
         }
 
         float x = Input.GetAxis("Horizontal");
