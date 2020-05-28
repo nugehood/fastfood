@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-    public float speed = 12f; 
+    public float speed = 5; 
 
     public CharacterController controller;
 
@@ -36,6 +36,7 @@ public class Movement : MonoBehaviour
         if (stealth)
         {
             loud.interactable = false;
+            audioSource.Stop();
         }
         else if (!stealth)
         {
@@ -73,15 +74,15 @@ public class Movement : MonoBehaviour
         //Apabila jalan
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            audioSource.Stop();
-            speed = 5f;
+            
+            speed = 3;
             stealth = true;
         }
         //Apabila tidak jalan
         else if (Input.GetKeyUp(KeyCode.LeftShift)&&walk)
         {
             audioSource.Play(); 
-            speed = 10f;
+            speed = 5;
             stealth = false;
         }
 

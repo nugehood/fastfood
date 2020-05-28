@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class AIscript : MonoBehaviour
 {
-    
+    public Slider visSlider;
 
     public NavMeshAgent agent;
     int randomPos;
@@ -25,6 +25,8 @@ public class AIscript : MonoBehaviour
 
     public bool door;
 
+    public visibilityScript visible;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class AIscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        visSlider.value = visible.limit;
         
 
         randomDirection = Random.insideUnitSphere * walkRadius;
